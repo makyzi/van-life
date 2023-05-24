@@ -16,8 +16,6 @@ const Vans = () => {
 		fetchVans().catch((e) => console.log(e))
 	}, [])
 
-	console.log(vans)
-
 	return (
 		<div className="van-list-container">
 			<h2>Explore our van options</h2>
