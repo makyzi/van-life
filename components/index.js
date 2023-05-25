@@ -1,3 +1,5 @@
 import Van from './Van'
+import Header from './Header'
+import Layout from './Layout'
 
-export { Van }
+export { Van, Header, Layout }
