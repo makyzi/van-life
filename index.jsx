@@ -6,7 +6,14 @@ import { Home, About, Vans, VanDetail } from './pages'
 
 import Layout from './components/Layout'
 
-import { Dashboard, Income, Reviews, HostLayout } from './pages/Host'
+import {
+	Dashboard,
+	Income,
+	Reviews,
+	HostLayout,
+	HostVans,
+	HostVan,
+} from './pages/Host'
 
 import './server'
 
@@ -23,6 +30,8 @@ const App = () => {
 					<Route path="host" element={<HostLayout />}>
 						<Route index element={<Dashboard />} />
 						<Route path="income" element={<Income />} />
+						<Route path="vans" element={<HostVans />} />
+						<Route path="vans/:id" element={<HostVan />} />
 						<Route path="reviews" element={<Reviews />} />
 					</Route>
 				</Route>
