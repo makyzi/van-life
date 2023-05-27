@@ -12,7 +12,10 @@ import {
 	Reviews,
 	HostLayout,
 	HostVans,
-	HostVan,
+	HostVanLayout,
+	HostVanDetails,
+	HostVanPhotos,
+	HostVanPricing,
 } from './pages/Host'
 
 import './server'
@@ -31,7 +34,14 @@ const App = () => {
 						<Route index element={<Dashboard />} />
 						<Route path="income" element={<Income />} />
 						<Route path="vans" element={<HostVans />} />
-						<Route path="vans/:id" element={<HostVan />} />
+						<Route path="vans/:id" element={<HostVanLayout />}>
+							<Route index element={<HostVanDetails />} />
+							<Route
+								path="pricing"
+								element={<HostVanPricing />}
+							/>
+							<Route path="photos" element={<HostVanPhotos />} />
+						</Route>
 						<Route path="reviews" element={<Reviews />} />
 					</Route>
 				</Route>
