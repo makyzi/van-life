@@ -1,6 +1,12 @@
 import { useState, useEffect } from 'react'
 import { NavLink, useParams, Outlet, Link } from 'react-router-dom'
 
+const activeStyles = ({ isActive }) => {
+	return isActive
+		? { color: '#161616', fontWeight: 'bold', textDecoration: 'underline' }
+		: null
+}
+
 const HostVanLayout = () => {
 	const { id } = useParams()
 	const [van, setVan] = useState({})
@@ -22,54 +28,34 @@ const HostVanLayout = () => {
 
 	return (
 		<section>
-			<Link to="/host/vans">&lt;- Back to all vans</Link>
-			<div className="host-van-single-details">
-				<div className="host-van-single-wrapper">
+			<Link className="back-button" to=".." relative="path">
+				&lt; <span>Back to all vans</span>
+			</Link>
+
+			<div className="host-van-detail-layout-container">
+				<div className="host-van-detail">
 					<img src={van.imageUrl} alt={`Photo of ${van.name}`} />
-					<div className="host-van-single-details-info">
-						<i>
-							<span>{van.type}</span>
+					<div className="host-van-detail-info-text">
+						<i className={`van-type van-type-${van.type}`}>
+							{van.type}
 						</i>
 						<h3>{van.name}</h3>
-						<p>${van.price}/day</p>
+						<h4>${van.price}/day</h4>
 					</div>
 				</div>
-				<nav>
-					<NavLink
-						end
-						to={`/host/vans/${id}`}
-						style={({ isActive }) =>
-							isActive
-								? { color: '#000', textDecoration: 'underline' }
-								: null
-						}
-					>
+				<nav className="host-van-detail-nav">
+					<NavLink end to="." style={activeStyles}>
 						Details
 					</NavLink>
-					<NavLink
-						style={({ isActive }) =>
-							isActive
-								? { color: '#000', textDecoration: 'underline' }
-								: null
-						}
-						to={`/host/vans/${id}/pricing`}
-					>
+					<NavLink style={activeStyles} to="pricing">
 						Pricing
 					</NavLink>
-					<NavLink
-						style={({ isActive }) =>
-							isActive
-								? { color: '#000', textDecoration: 'underline' }
-								: null
-						}
-						to={`/host/vans/${id}/photos`}
-					>
+					<NavLink style={activeStyles} to="photos">
 						Photos
 					</NavLink>
 				</nav>
+				<Outlet context={van} />
 			</div>
-
-			<Outlet />
 		</section>
 	)
 }

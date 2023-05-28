@@ -6,7 +6,7 @@ const HostLayout = () => {
 		<>
 			<nav className="host-nav">
 				<NavLink
-					to="/host"
+					to="."
 					className={({ isActive }) =>
 						isActive ? 'active-link' : null
 					}
