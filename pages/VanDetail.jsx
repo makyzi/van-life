@@ -1,9 +1,13 @@
 import { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, Link, useLocation } from 'react-router-dom'
 
 const VanDetail = () => {
+	const location = useLocation()
 	const [vanDetails, setVanDetails] = useState({})
 	const { id: vanId } = useParams()
+
+	const search = location.state?.search || ''
+	const backLinkText = location.state?.type || 'all'
 
 	useEffect(() => {
 		const fetchVanData = async () => {
@@ -19,6 +23,9 @@ const VanDetail = () => {
 
 	return (
 		<div className="van-detail-container">
+			<Link className="back-button" to={`..${search}`} relative="path">
+				&lt; <span>Back to {backLinkText} vans</span>
+			</Link>
 			{vanDetails ? (
 				<div className="van-detail">
 					<img src={imageUrl} alt="Image of van" />
